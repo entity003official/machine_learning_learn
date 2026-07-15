@@ -1,0 +1,7 @@
+# 排除 .claude 目录
+.claude/
+
+# 排除生成的图表图片
+*.png
+*.jpg
+*.jpeg

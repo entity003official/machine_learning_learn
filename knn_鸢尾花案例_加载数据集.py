@@ -47,16 +47,30 @@ def load_data():
     #3.查看数据集所有的键
     # print(f'数据集的所有键为：\n{iris_data.keys()}')
     #4.查看数据集的键对应的值
-    print(f'数据集的键对应的值为：\n{iris_data.data[:5]}')   #有150个样本，每个样本有4个特征,我们只看前5个样本的特征数据   
+    # print(f'数据集的键对应的值为：\n{iris_data.data[:5]}')   #有150个样本，每个样本有4个特征,我们只看前5个样本的特征数据   
     #5.查看数据集的目标数据
-    print(f'数据集的目标数据为：\n{iris_data.target[:5]}')   #有150个样本，每个样本有一个目标数据，我们只看前5个样本的目标数据
+    # print(f'数据集的目标数据为：\n{iris_data.target[:5]}')   #有150个样本，每个样本有一个目标数据，我们只看前5个样本的目标数据
 
-#2. 
-
+#2. 定义函数，绘制散点图
+def draw_scatter():
+    #1.加载数据集
+    iris_data = load_iris()
+    #2.将数据集封装成DataFrame对象
+    iris_df = pd.DataFrame(data=iris_data.data, columns=iris_data.feature_names)
+    #3给df新增一列，存放目标数据
+    iris_df['target'] = iris_data.target
+    # print(f'数据集的前5行数据为：\n{iris_df.head()}') 
+    #4.通过seaborn绘制散点图
+    sns.lmplot(data=iris_df, x='sepal length (cm)', y='sepal width (cm)', hue='target', fit_reg=False)
+    #5.设置标题，显示
+    plt.title('iris data')
+    plt.tight_layout()
+    plt.show()
 #3.
 
 #4.
 
 #5.测试
 if __name__ == '__main__':
-    load_data()
+    # load_data()    # 查看数据描述
+    draw_scatter()  # 绘制散点图
